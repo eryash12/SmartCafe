@@ -10,20 +10,20 @@ class Home extends CI_Controller{
     {
 
         $params["host"] = "m10.cloudmqtt.com";
-        $params["port"] = 11740;
-        $username = "pcrfytjr";
-        $password = "6PYy_bKDFUyt";
+        $params["port"] = 	15011;
+        $username = "riffmwzz";
+        $password = "tNsoqsOji4GO";
 
         $params["client_id"] = "ClientID".rand();
         $this->load->library('PhpMQTT',$params);
 
-        if(!$this->phpmqtt->connect(true,NULL,"pcrfytjr","6PYy_bKDFUyt")){
+        if(!$this->phpmqtt->connect(true,NULL,"riffmwzz","tNsoqsOji4GO")){
             echo "yes";
             exit(1);
         }
 
         //currently subscribed topics
-        $topics['outTopic'] = array("qos"=>0, "function"=>"procmsg");
+        $topics['hello'] = array("qos"=>0, "function"=>"procmsg");
 
         $this->phpmqtt->subscribe($topics,0);
 //        exit;
@@ -42,9 +42,9 @@ class Home extends CI_Controller{
     function publish(){
 
         $params["host"] = "m10.cloudmqtt.com";
-        $params["port"] = 11740;
-        $username = "pcrfytjr";
-        $password = "6PYy_bKDFUyt";
+        $params["port"] = 	15011;
+        $username = "riffmwzz";
+        $password = "tNsoqsOji4GO";
         $message = "publish succesfull";
 
         $params["client_id"] = "ClientID".rand();
