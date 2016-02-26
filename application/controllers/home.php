@@ -26,7 +26,7 @@ class home extends CI_Controller{
         $topics['outTopic'] = array("qos"=>0, "function"=>"procmsg");
 
         $this->phpmqtt->subscribe($topics,0);
-        exit;
+//        exit;
         while($this->phpmqtt->proc()){
 
         }
@@ -34,6 +34,7 @@ class home extends CI_Controller{
         $this->phpmqtt->close();
         function procmsg($topic,$msg){
             echo "Msg Recieved: $msg";
+
         }
 
 
@@ -50,12 +51,20 @@ class home extends CI_Controller{
         $this->load->library('phpMQTT',$params);
 
         if ($this->phpmqtt->connect(true,NULL,"pcrfytjr","6PYy_bKDFUyt")) {
-            $this->phpmqtt->publish("topic",$message, 0);
+//            while(true) {
+                $this->phpmqtt->publish("topic", $message, 0);
+
+//            }
             $this->phpmqtt->close();
         }else{
             echo "Fail or time out<br />";
         }
     }
+//    function test(){
+//
+//        echo unix_to_human($unix);
+//    }
+
 
 
 }

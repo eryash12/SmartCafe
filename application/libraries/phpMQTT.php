@@ -216,15 +216,20 @@ class phpMQTT{
         $topic = substr($msg,2,$tlen);
         $msg = substr($msg,($tlen+2));
         $found = 0;
+
         foreach($this->topics as $key=>$top){
             if( preg_match("/^".str_replace("#",".*",
                     str_replace("+","[^\/]*",
                         str_replace("/","\/",
                             str_replace("$",'\$',
                                 $key))))."$/",$topic) ){
-                if(is_callable($top['function'])){
-                    call_user_func($top['function'],$topic,$msg);
+                if($msg != null){
+//                    call_user_func($top['function'],$topic,$msg);
                     $found = 1;
+                    $CI =& get_instance();
+                    //--------------
+                    $CI->load->model('user_model');
+                    $CI->user_model->write_data($topic,$msg);
                 }
             }
         }
