@@ -69,6 +69,13 @@ class Home extends CI_Controller{
     function get_data(){
         echo 1;
     }
+    function main_page($a){
+        $this->load->model('user_model');
+        $params['name'] = $a;
+        $params['last_name'] = "patil";
+        $params['sensor_data'] = $this->user_model->get_data('outTopic');
+        $this->load->view('main_page',$params);
+    }
 //    function test(){
 //
 //        echo unix_to_human($unix);

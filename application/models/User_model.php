@@ -18,4 +18,11 @@ class User_model extends CI_Model
         $data['timestamp'] = $unix;
         $this->db->insert("sensors_data", $data);
     }
+    function get_data($topic){
+        $this->db->select("value");
+        $this->db->from("sensors_data");
+        $this->db->where('topic',$topic);
+        $result = $this->db->get();
+        return $result->result_array();
+    }
 }
