@@ -227,7 +227,7 @@ class PhpMQTT{
 //                    call_user_func($top['function'],$topic,$msg);
                     $found = 1;
                     $CI =& get_instance();
-                    //--------------
+
                     $CI->load->model('user_model');
                     $CI->user_model->write_data($topic,$msg);
                 }

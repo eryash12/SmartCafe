@@ -60,6 +60,12 @@ class Home extends CI_Controller{
             echo "Fail or time out<br />";
         }
     }
+    function get_data($topic,$value){
+
+
+        $this->load->model('user_model');
+        $this->user_model->write_data($topic,$value);
+    }
 //    function test(){
 //
 //        echo unix_to_human($unix);
