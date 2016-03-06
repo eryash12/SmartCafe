@@ -8,35 +8,14 @@
 class Home extends CI_Controller{
     function index()
     {
+        $params['title'] = "Dashboard";
+       $this->load->view('header',$params);
+        $this->load->view('dashboard');
+        $this->load->view('footer');
 
-        $params["host"] = "m10.cloudmqtt.com";
-        $params["port"] = 	15011;
-        $username = "riffmwzz";
-        $password = "tNsoqsOji4GO";
 
-        $params["client_id"] = "ClientID".rand();
-        $this->load->library('PhpMQTT',$params);
-
-        if(!$this->phpmqtt->connect(true,NULL,"riffmwzz","tNsoqsOji4GO")){
-            echo "yes";
-            exit(1);
-        }
-
-        //currently subscribed topics
-        $topics['hello'] = array("qos"=>0, "function"=>"procmsg");
-
-        $this->phpmqtt->subscribe($topics,0);
-//        exit;
-        while($this->phpmqtt->proc()){
-
-        }
-
-        $this->phpmqtt->close();
-        function procmsg($topic,$msg){
-            echo "Msg Recieved: $msg";
-
-        }
-
+    }
+    function dashboard(){
 
     }
     function publish(){
@@ -81,7 +60,35 @@ class Home extends CI_Controller{
 //        echo unix_to_human($unix);
 //    }
 
+    function Mqttsub(){
+        $params["host"] = "m10.cloudmqtt.com";
+        $params["port"] = 	15011;
+        $username = "riffmwzz";
+        $password = "tNsoqsOji4GO";
 
+        $params["client_id"] = "ClientID".rand();
+        $this->load->library('PhpMQTT',$params);
+
+        if(!$this->phpmqtt->connect(true,NULL,"riffmwzz","tNsoqsOji4GO")){
+            echo "yes";
+            exit(1);
+        }
+
+        //currently subscribed topics
+        $topics['hello'] = array("qos"=>0, "function"=>"procmsg");
+
+        $this->phpmqtt->subscribe($topics,0);
+//        exit;
+        while($this->phpmqtt->proc()){
+
+        }
+
+        $this->phpmqtt->close();
+        function procmsg($topic,$msg){
+            echo "Msg Recieved: $msg";
+
+        }
+    }
 
 }
 ?>
