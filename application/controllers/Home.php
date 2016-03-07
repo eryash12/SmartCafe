@@ -39,11 +39,12 @@ class Home extends CI_Controller{
             echo "Fail or time out<br />";
         }
     }
-    function send_data($topic,$value){
+    function send_data($temp,$irr,$eff,$power){
 
 
         $this->load->model('user_model');
-        $this->user_model->write_data($topic,$value);
+        $this->user_model->write_data($temp,$irr,$eff,$power);
+
     }
     function get_data(){
         echo 1;

@@ -9,10 +9,12 @@ class User_model extends CI_Model
         parent::__construct();
 
     }
-    function write_data($topic ,$msg){
+    function write_data($temp,$irr,$eff,$power){
 //        $data['firstname'] = json_encode($a);
-        $data['topic'] = $topic;
-        $data['value'] = $msg;
+        $data['temperature'] = $temp;
+        $data['irradiance'] = $irr;
+        $data['efficiency'] = $eff;
+        $data['power']= $power;
         $this->load->helper('date');
         $unix =  now('PST');
         $data['timestamp'] = $unix;

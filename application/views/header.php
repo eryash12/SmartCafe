@@ -2,6 +2,7 @@
 <html lang = "en">
 <head>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+    <script src="<?php echo base_url()?>files/jquery.simpleWeather.js"></script>
     <script src="<?php echo base_url()?>files/dashboard.js"></script>
     <script src="http://canvasjs.com/assets/script/canvasjs.min.js"></script>
 
