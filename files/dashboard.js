@@ -47,11 +47,12 @@ $(document).ready(function() {
 
         $.ajax(
             {
-                url: base+"data/get_temp/",
+                url: "http://www.yashtam.info/"+"data/get_temp/",
+                type: "POST",
                 success: function(data, status)
                 {
-                    if (status == 'success')
-                    {
+                    //if (status == 'success')
+                    //{
                         dps.push({
                             x: xVal,
                             y: data
@@ -62,7 +63,7 @@ $(document).ready(function() {
                         }
                         chart.render();
                         xVal++;
-                    }
+                    //}
                 },
                 error: function(xhr, desc, err)
                 {
