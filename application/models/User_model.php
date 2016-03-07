@@ -30,10 +30,10 @@ class User_model extends CI_Model
 
 
     }
-    function get_data($topic){
+    function get_current_value($topic){
         $this->db->select("value");
-        $this->db->from("sensors_data");
-        $this->db->where('topic',$topic);
+        $this->db->from("current_values");
+        $this->db->where('tag',$topic);
         $result = $this->db->get();
         return $result->result_array();
     }
