@@ -12,8 +12,8 @@ class Data extends CI_Controller{
        foreach ($temp as $v){
            echo $v["temperature"];
            echo "<br>";
-//           echo unix_to_human($v["timestamp"]);
-           echo unix_to_human(gmt_to_local($v["timestamp"],"UM8",FALSE));
+           echo unix_to_human($v["timestamp"]);
+//           echo unix_to_human(gmt_to_local($v["timestamp"],"UM8",FALSE));
            echo "<br>";
 
        }
