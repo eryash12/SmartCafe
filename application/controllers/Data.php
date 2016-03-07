@@ -6,6 +6,11 @@
  * Time: 5:33 PM
  */
 class Data extends CI_Controller{
+    public function __construct()
+    {
+        parent::__construct();
+
+    }
    function get_temp(){
        $this->load->model('user_model');
        $temp = $this->user_model->get_current_value('temperature');
