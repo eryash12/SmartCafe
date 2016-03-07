@@ -12,6 +12,7 @@ class Data extends CI_Controller{
 
     }
    function get_temp(){
+       $this->output->set_header('HTTP/1.0 200 OK');
        $this->load->model('user_model');
        $temp = $this->user_model->get_current_value('temperature');
 //       foreach ($temp as $v){
