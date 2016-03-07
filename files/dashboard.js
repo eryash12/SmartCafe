@@ -7,7 +7,13 @@ $(document).ready(function() {
 
     var chart = new CanvasJS.Chart("chart1",{
         title :{
-            text: "Live Random Data"
+            text: "Live Temperature vs Time Graph "
+        },
+        axisX: {
+            title: "Time (Seconds)"
+        },
+        axisY: {
+            title: "Temperature (Celsius)"
         },
         data: [{
             type: "line",

@@ -16,7 +16,7 @@ class User_model extends CI_Model
         $data['efficiency'] = $eff;
         $data['power']= $power;
         $this->load->helper('date');
-        $unix =  now('PST');
+        $unix =  now('UM8');
         $data['timestamp'] = $unix;
         $this->db->insert("sensors_data", $data);
     }
@@ -24,6 +24,14 @@ class User_model extends CI_Model
         $this->db->select("value");
         $this->db->from("sensors_data");
         $this->db->where('topic',$topic);
+        $result = $this->db->get();
+        return $result->result_array();
+    }
+    function get_temp(){
+        $this->db->select("temperature,timestamp");
+        $this->db->from("sensors_data");
+//        $this->db->limit("10");
+        $this->db->order_by("timestamp DESC");
         $result = $this->db->get();
         return $result->result_array();
     }
