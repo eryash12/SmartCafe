@@ -47,7 +47,7 @@ $(document).ready(function() {
 
         $.ajax(
             {
-                url: "http://www.yashtam.info/"+"data/get_temp/",
+                url: base+"data/get_temp/",
                 type: "POST",
                 success: function(data, status)
                 {
