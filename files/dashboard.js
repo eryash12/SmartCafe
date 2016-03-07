@@ -39,7 +39,7 @@ $(document).ready(function() {
         //    xVal++;
         //};
 
-        $.get( base+"data/get_temp", function( data ) {
+        $.get( base+"data/get_temp/", function( data ) {
 
             //alert( data);
             dps.push({
