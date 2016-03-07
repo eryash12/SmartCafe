@@ -16,9 +16,19 @@ class User_model extends CI_Model
         $data['efficiency'] = $eff;
         $data['power']= $power;
         $this->load->helper('date');
-        $unix =  now('UM8');
+        $unix =  now('PST');
         $data['timestamp'] = $unix;
+
         $this->db->insert("sensors_data", $data);
+
+
+        $this->db->query("UPDATE current_values SET value = $temp where tag = 'temperature'");
+        $this->db->query("UPDATE current_values SET value = $irr where tag = 'irradiance'");
+        $this->db->query("UPDATE current_values SET value = $eff where tag = 'efficiency'");
+        $this->db->query("UPDATE current_values SET value = $power where tag = 'power'");
+
+
+
     }
     function get_data($topic){
         $this->db->select("value");
