@@ -39,20 +39,39 @@ $(document).ready(function() {
         //    xVal++;
         //};
 
-        $.get( base+"data/get_temp/", function( data ) {
+        //$.get( base+"data/get_temp/", function( data ) {
+        //
+        //    //alert( data);
+        //
+        //});
 
-            //alert( data);
-            dps.push({
-                        x: xVal,
-                        y: data
-                    });
-            if (dps.length > dataLength)
+        $.ajax(
             {
-                dps.shift();
+                url: base+"data/get_temp/",
+                success: function(data, status)
+                {
+                    if (status == 'success')
+                    {
+                        dps.push({
+                            x: xVal,
+                            y: data
+                        });
+                        if (dps.length > dataLength)
+                        {
+                            dps.shift();
+                        }
+                        chart.render();
+                        xVal++;
+                    }
+                },
+                error: function(xhr, desc, err)
+                {
+                    console.log(xhr);
+                    console.log(desc);
+                    console.log(err);
+                }
             }
-            chart.render();
-            xVal++;
-        });
+        )
 
 
     };
