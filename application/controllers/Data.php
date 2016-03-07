@@ -18,7 +18,7 @@ class Data extends CI_Controller{
 //
 //       }
 
-       echo $temp[0]["value"];
+       echo json_encode($temp[0]["value"]);
    }
 }
 ?>
