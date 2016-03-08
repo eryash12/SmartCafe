@@ -20,8 +20,8 @@ $(document).ready(function() {
             },
             axisY2: {
                 title: "Efficiency ",
-                minimum: 0.1,
-                maximum: 0.15
+                minimum: 13,
+                maximum: 15
             },
             data: [{
                 type: "line",
@@ -273,7 +273,7 @@ $(document).ready(function() {
             success: function(data, status)
             {
                 data = $.parseJSON(data);
-                var min = parseInt(data[0]['mindata']);
+                var min = parseFloat(data[0]['mindata']);
 
                 console.log(parseInt(data[0]['mindata']));
 
@@ -282,7 +282,7 @@ $(document).ready(function() {
 
                     yAxis: {
                         min: min,
-                        max: parseInt(data[0]['maxdata']),
+                        max: parseFloat(data[0]['maxdata']),
                         title: {
                             text: 'Average Temperature'
                         }
@@ -294,7 +294,7 @@ $(document).ready(function() {
 
                     series: [{
                         name: 'Speed',
-                        data: parseInt(data[0]['avgdata']),
+                        data: parseFloat(data[0]['avgdata']),
                         dataLabels: {
                             format: '<div style="text-align:center"><span style="font-size:25px;color:' +
                             ((Highcharts.theme && Highcharts.theme.contrastTextColor) || 'black') + '">{y}</span><br/>' +
