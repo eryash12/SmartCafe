@@ -7,6 +7,8 @@ $(document).ready(function() {
         var dps2 = [];
 
         var chart = new CanvasJS.Chart("chart1", {
+            zoomEnabled: true,
+            zoomType: "y",
             title: {
                 text: "Live Temperature(Blue) and Efficiency(Red) vs Time Graph "
             },
@@ -17,7 +19,9 @@ $(document).ready(function() {
                 title: "Temperature (Celsius)"
             },
             axisY2: {
-                title: "Efficiency "
+                title: "Efficiency ",
+                minimum: 0.1,
+                maximum: 0.15
             },
             data: [{
                 type: "line",
@@ -27,6 +31,7 @@ $(document).ready(function() {
                 axisYType: "secondary",
                 dataPoints: dps2
             }]
+
 
 
         });
