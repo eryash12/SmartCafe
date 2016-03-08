@@ -8,14 +8,14 @@
 <!--    </div>-->
     <div id="bb1" class="col-md-4 box-big" style="">
 <!--        <img src="--><?php //echo base_url();?><!--files/img/chart.png" style="height: 200px;width: 400px" alt=""/>-->
-        <div id="chart1" style="height: 80%; width: 100%;"></div>
+        <div id="chart1" style="height: 100%; width: 100%;"></div>
     </div>
     <div id="weather-box" class="col-md-2 box-small"></div>
     <div id="sb1" class="col-md-2 box-small"></div>
     <div id="sb1" class="col-md-2 box-small" style="margin-top: 15px"></div>
     <div id="sb1" class="col-md-2 box-small" style="margin-top: 15px"></div>
     <div id="bb2" class="col-md-4 box-big" style="margin-top: 15px">
-        <div id="chart2" style="height: 80%; width: 100%;"></div>
+        <div id="chart2" style="height: 100%; width: 100%;"></div>
     </div>
     <div id="sb1" class="col-md-2 box-small" style="margin-top: 15px"></div>
     <div id="sb1" class="col-md-2 box-small" style="margin-top: 15px"></div>

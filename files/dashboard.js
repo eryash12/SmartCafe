@@ -2,86 +2,182 @@
  * Created by yash on 3/3/16.
  */
 $(document).ready(function() {
+    function plot_temp_eff_graph() {
+        var dps = []; // dataPoints
+        var dps2 = [];
 
-    var dps = []; // dataPoints
+        var chart = new CanvasJS.Chart("chart1", {
+            title: {
+                text: "Live Temperature(Blue) and Efficiency(Red) vs Time Graph "
+            },
+            axisX: {
+                title: "Time (Seconds)"
+            },
+            axisY: {
+                title: "Temperature (Celsius)"
+            },
+            axisY2: {
+                title: "Efficiency "
+            },
+            data: [{
+                type: "line",
+                dataPoints: dps
+            }, {
+                type: "line",
+                axisYType: "secondary",
+                dataPoints: dps2
+            }]
 
-    var chart = new CanvasJS.Chart("chart1",{
-        title :{
-            text: "Live Temperature vs Time Graph "
-        },
-        axisX: {
-            title: "Time (Seconds)"
-        },
-        axisY: {
-            title: "Temperature (Celsius)"
-        },
-        data: [{
-            type: "line",
-            dataPoints: dps
-        }]
-    });
 
-    var xVal = 0;
-    var yVal = 0;
-    var updateInterval = 1000;
-    var dataLength = 50; // number of dataPoints visible at any point
+        });
 
-    var updateChart = function (count) {
-        count = count || 1;
-        // count is number of times loop runs to generate random dataPoints.
+        var xVal = 0;
+        var yVal = 0;
+        var updateInterval = 1000;
+        var dataLength = 50; // number of dataPoints visible at any point
 
-        //for (var j = 0; j < count; j++) {
-        //    yVal = yVal +  Math.round(5 + Math.random() *(-5-5));
-        //    dps.push({
-        //        x: xVal,
-        //        y: yVal
-        //    });
-        //    xVal++;
-        //};
+        var updateChart = function (count) {
 
-        //$.get( base+"data/get_temp/", function( data ) {
-        //
-        //    //alert( data);
-        //
-        //});
 
         $.ajax(
-            {
-                url: base+"data/get_temp/",
-                type: "POST",
-                success: function(data, status)
                 {
-                    //if (status == 'success')
-                    //{
+                    url: base + "data/get_temp_and_eff/",
+                    type: "POST",
+                    success: function (data, status) {
+                        //if (status == 'success')
+                        //{
+                        data = $.parseJSON(data);
+                        var temp = parseFloat(data['temp']);
+                        var eff = parseFloat(data['eff']);
+
+
                         dps.push({
                             x: xVal,
-                            y: data
+                            y: temp
                         });
-                        if (dps.length > dataLength)
-                        {
+                        dps2.push({
+                            x: xVal,
+                            y: eff
+                        });
+                        if (dps.length > dataLength) {
                             dps.shift();
+                        }
+                        if (dps2.length > dataLength) {
+                            dps2.shift();
                         }
                         chart.render();
                         xVal++;
-                    //}
-                },
-                error: function(xhr, desc, err)
-                {
-                    console.log(xhr);
-                    console.log(desc);
-                    console.log(err);
+                        //}
+                    },
+                    error: function (xhr, desc, err) {
+                        console.log(xhr);
+                        console.log(desc);
+                        console.log(err);
+                    }
                 }
-            }
-        )
+            )
 
 
-    };
+        };
 
-    // generates first set of dataPoints
-    updateChart(dataLength);
+        // generates first set of dataPoints
+        updateChart(dataLength);
 
-    // update chart after specified time.
-    setInterval(function(){updateChart()}, updateInterval);
+        // update chart after specified time.
+        setInterval(function () {
+            updateChart()
+        }, updateInterval);
+    }
+    plot_temp_eff_graph();
+
+    function plot_irr_pow_graph() {
+        var dps = []; // dataPoints
+        var dps2 = [];
+
+        var chart = new CanvasJS.Chart("chart2", {
+            title: {
+                text: "Live Irradiance(Blue) and Power(Red) vs Time Graph "
+            },
+            axisX: {
+                title: "Time (Seconds)"
+            },
+            axisY: {
+                title: "Irradiance"
+            },
+            axisY2: {
+                title: "Power "
+            },
+            data: [{
+                type: "line",
+                dataPoints: dps
+            }, {
+                type: "line",
+                axisYType: "secondary",
+                dataPoints: dps2
+            }]
+
+
+        });
+
+        var xVal = 0;
+        var yVal = 0;
+        var updateInterval = 1000;
+        var dataLength = 50; // number of dataPoints visible at any point
+
+        var updateChart = function (count) {
+
+
+            $.ajax(
+                {
+                    url: base + "data/get_irr_and_pow/",
+                    type: "POST",
+                    success: function (data, status) {
+                        //if (status == 'success')
+                        //{
+                        data = $.parseJSON(data);
+                        var irr = parseFloat(data['irr']);
+                        var pow = parseFloat(data['pow']);
+
+
+                        dps.push({
+                            x: xVal,
+                            y: irr
+                        });
+                        dps2.push({
+                            x: xVal,
+                            y: pow
+                        });
+                        if (dps.length > dataLength) {
+                            dps.shift();
+                        }
+                        if (dps2.length > dataLength) {
+                            dps2.shift();
+                        }
+                        chart.render();
+                        xVal++;
+                        //}
+                    },
+                    error: function (xhr, desc, err) {
+                        console.log(xhr);
+                        console.log(desc);
+                        console.log(err);
+                    }
+                }
+            )
+
+
+        };
+
+        // generates first set of dataPoints
+        updateChart(dataLength);
+
+        // update chart after specified time.
+        setInterval(function () {
+            updateChart()
+        }, updateInterval);
+    }
+    plot_irr_pow_graph();
+
 
     $.simpleWeather({
         location: 'Santa Clara,CA',

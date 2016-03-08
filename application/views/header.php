@@ -1,6 +1,8 @@
 <!DOCTYPE html>
 <html lang = "en">
 <head>
+    <?php
+    $this->output->set_header('Access-Control-Allow-Origin: *');?>
     <script>var base = "<?php echo base_url();?>"</script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
     <script src="<?php echo base_url()?>files/jquery.simpleWeather.js"></script>
