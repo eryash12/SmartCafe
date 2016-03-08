@@ -49,4 +49,7 @@ class User_model extends CI_Model
        $result =  $this->db->query("select MIN($type) as mindata,MAX($type) as maxdata ,AVG($type) as avgdata from sensors_data");
         return $result->result_array();
     }
+    function set_current_value($topic,$value){
+        $this->db->query("UPDATE current_values SET value = $value where tag = '$topic'");
+    }
 }

@@ -54,7 +54,11 @@ class Data extends CI_Controller{
        $temp = $this->user_model->get_avg_value('temperature');
        echo json_encode($temp);
    }
+    function set_current_value($topic,$value){
+        $this->load->model('user_model');
+        $this->user_model->set_current_value($topic,$value);
 
+    }
 
 }
 ?>
