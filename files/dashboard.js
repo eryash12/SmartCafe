@@ -20,8 +20,8 @@ $(document).ready(function() {
             },
             axisY2: {
                 title: "Efficiency ",
-                minimum: 13,
-                maximum: 15
+                minimum: 11,
+                maximum: 13
             },
             data: [{
                 type: "line",
