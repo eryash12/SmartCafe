@@ -39,9 +39,12 @@ class Home extends CI_Controller
 
         $this->load->model('user_model');
         $this->user_model->write_data($temp, $irr, $eff, $power);
-        $data["system"] = $this->user_model->get_current_value('system');
-        $data["valve"] = $this->user_model->get_current_value('valve');
-        echo json_encode($data);
+        $system = $this->user_model->get_current_value('system');
+        $valve = $this->user_model->get_current_value('valve');
+
+        $send_data["system"] = $system[0]["value"];
+        $send_data["valve"] = $valve[0]["value"];
+        echo json_encode($send_data);
 
     }
 
