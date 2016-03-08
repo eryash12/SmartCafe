@@ -20,7 +20,14 @@ class Home extends CI_Controller
 
 
     }
-
+    function login(){
+        $this->output->set_header("Access-Control-Allow-Origin: *");
+        $this->output->set_header("Access-Control-Expose-Headers: Access-Control-Allow-Origin");
+        $params['title'] = "Dashboard";
+        $this->load->view('header', $params);
+        $this->load->view('login');
+        $this->load->view('footer');
+    }
     function dashboard()
     {
 
