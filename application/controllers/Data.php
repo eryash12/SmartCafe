@@ -15,7 +15,7 @@ class Data extends CI_Controller{
    function get_temp_and_eff(){
        $this->output->set_header('HTTP/1.0 200 OK');
        $this->load->model('user_model');
-       $temp = $this->user_model->get_current_value('temperature');
+        $temp = $this->user_model->get_current_value('temperature');
        $eff = $this->user_model->get_current_value('efficiency');
 //       foreach ($temp as $v){
 //           echo $v["temperature"];
@@ -46,5 +46,15 @@ class Data extends CI_Controller{
         $data['pow'] = $pow[0]["value"];
         echo json_encode($data);
     }
+
+   function get_average_temp(){
+       $this->output->set_header('HTTP/1.0 200 OK');
+       $this->load->model('user_model');
+
+       $temp = $this->user_model->get_avg_value('temperature');
+       echo json_encode($temp);
+   }
+
+
 }
 ?>

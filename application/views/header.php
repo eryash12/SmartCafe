@@ -9,7 +9,13 @@
     <link href="<?php echo base_url()?>files/bootstrap-switch.min.css" rel="stylesheet">
     <script src="<?php echo base_url()?>files/dashboard.js"></script>
     <script src="http://canvasjs.com/assets/script/canvasjs.min.js"></script>
+
     <script src="<?php echo base_url()?>files/bootstrap-switch.min.js"></script>
+
+    <script src="http://code.highcharts.com/highcharts.js"></script>
+    <script src="http://code.highcharts.com/highcharts-more.js"></script>
+    <script src="http://code.highcharts.com/modules/solid-gauge.js"></script>
+
 
 <!--    <link rel="icon" type="image/png" href="--><?php //echo base_url()?><!--files/pics/bartlogo.png" />-->
     <!--            Bootstrap-->

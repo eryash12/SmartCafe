@@ -11,7 +11,7 @@
         <div id="chart1" style="height: 100%; width: 100%;"></div>
     </div>
     <div id="weather-box" class="col-md-2 box-small"></div>
-    <div id="sb1" class="col-md-2 box-small"></div>
+    <div id="avaragetemperature-box"  style="padding:0;" class="col-md-2 box-small"></div>
     <div id="sb1" class="col-md-2 box-small" style="margin-top: 15px"></div>
     <div id="sb1" class="col-md-2 box-small" style="margin-top: 15px"></div>
     <div id="bb2" class="col-md-4 box-big" style="margin-top: 15px">

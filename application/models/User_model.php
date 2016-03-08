@@ -45,4 +45,8 @@ class User_model extends CI_Model
         $result = $this->db->get();
         return $result->result_array();
     }
+    function get_avg_value($type){
+       $result =  $this->db->query("select MIN($type) as mindata,MAX($type) as maxdata ,AVG($type) as avgdata from sensors_data");
+        return $result->result_array();
+    }
 }

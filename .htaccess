@@ -1,7 +1,7 @@
 
 <IfModule mod_rewrite.c>
     RewriteEngine On
-    RewriteBase /
+    RewriteBase /smartcafe
 
     RewriteCond $1 !^(index\.php|files|images|robots\.txt)
 	RewriteRule ^(.*)$ index.php?/$1 [L]
