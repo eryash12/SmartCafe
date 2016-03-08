@@ -177,8 +177,18 @@ $(document).ready(function() {
         }, updateInterval);
     }
     plot_irr_pow_graph();
-
-
+    $("[name='sensor-checkbox']").bootstrapSwitch();
+    $('input[name="sensor-checkbox"]').on('switchChange.bootstrapSwitch', function(event, state) {
+        console.log(this); // DOM element
+        console.log(event); // jQuery event
+        console.log(state); // true | false
+    });
+    $("[name='motor-checkbox']").bootstrapSwitch();
+    $('input[name="motor-checkbox"]').on('switchChange.bootstrapSwitch', function(event, state) {
+        console.log(this); // DOM element
+        console.log(event); // jQuery event
+        console.log(state); // true | false
+    });
     $.simpleWeather({
         location: 'Santa Clara,CA',
         woeid: '',

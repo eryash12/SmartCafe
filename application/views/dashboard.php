@@ -17,8 +17,12 @@
     <div id="bb2" class="col-md-4 box-big" style="margin-top: 15px">
         <div id="chart2" style="height: 100%; width: 100%;"></div>
     </div>
-    <div id="sb1" class="col-md-2 box-small" style="margin-top: 15px"></div>
-    <div id="sb1" class="col-md-2 box-small" style="margin-top: 15px"></div>
+    <div id="sensor-switch-div" class="col-md-2 box-small" style="margin-top: 15px">
+        <input type="checkbox" name="sensor-checkbox" class="switch" checked>
+    </div>
+    <div id="motor-switch-div" class="col-md-2 box-small" style="margin-top: 15px">
+        <input type="checkbox" name="motor-checkbox" class="switch" checked>
+    </div>
     <div id="sb1" class="col-md-2 box-small" style="margin-top: 15px"></div>
     <div id="sb1" class="col-md-2 box-small" style="margin-top: 15px"></div>
 <!--    <div id="chart2" class="col-md-4 box-big" style="height: 300px; width: 500px;">-->
