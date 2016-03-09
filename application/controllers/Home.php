@@ -46,7 +46,7 @@ class Home extends CI_Controller
         $valve = $valve[0]["value"];
 
 
-        echo "system=$system\r valve=$valve";
+        echo "system=$system\rvalve=$valve\r";
 
     }
 
