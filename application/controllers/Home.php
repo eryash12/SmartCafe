@@ -42,9 +42,11 @@ class Home extends CI_Controller
         $system = $this->user_model->get_current_value('system');
         $valve = $this->user_model->get_current_value('valve');
 
-        $send_data["system"] = $system[0]["value"];
-        $send_data["valve"] = $valve[0]["value"];
-        echo json_encode($send_data);
+        $system = $system[0]["value"];
+        $valve = $valve[0]["value"];
+
+
+        echo "system=$system\r valve=$valve";
 
     }
 
