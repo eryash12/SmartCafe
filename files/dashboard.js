@@ -187,12 +187,64 @@ $(document).ready(function() {
         console.log(this); // DOM element
         console.log(event); // jQuery event
         console.log(state); // true | false
+        var flag = 0 ;
+        if(state) {
+            flag = 1;
+        }
+
+        $.ajax(
+            {
+                url: base + "data/set_current_value/system/"+flag,
+                type: "POST",
+                success: function (data, status) {
+                    //if (data !== 'success')
+                    //{
+                    //    alert("Error Contacting the server");
+                    //}
+
+
+                },
+                error: function (xhr, desc, err) {
+                    console.log(xhr);
+                    console.log(desc);
+                    console.log(err);
+                }
+            }
+        )
+
+
+
+
     });
     $("[name='motor-checkbox']").bootstrapSwitch();
     $('input[name="motor-checkbox"]').on('switchChange.bootstrapSwitch', function(event, state) {
         console.log(this); // DOM element
         console.log(event); // jQuery event
         console.log(state); // true | false
+        var flag = 0 ;
+        if(state) {
+            flag = 1;
+        }
+
+        $.ajax(
+            {
+                url: base + "data/set_current_value/valve/"+flag,
+                type: "POST",
+                success: function (data, status) {
+                    //if (data !== 'success')
+                    //{
+                    //    alert("Error Contacting the server");
+                    //}
+
+
+                },
+                error: function (xhr, desc, err) {
+                    console.log(xhr);
+                    console.log(desc);
+                    console.log(err);
+                }
+            }
+        )
     });
     $.simpleWeather({
         location: 'Santa Clara,CA',
