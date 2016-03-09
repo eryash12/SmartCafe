@@ -48,8 +48,8 @@ class Home extends CI_Controller
         $data["system"] = $system;
         $data["valve"] = $valve;
         $data["threshold"]=0;
-//        echo json_encode($data);
-        echo addslashes(json_encode($data));
+        echo json_encode($data);
+//        echo addslashes(json_encode($data));
 //        echo "system=$system\rvalve=$valve\r";
 
     }
