@@ -263,106 +263,60 @@ $(document).ready(function() {
         }
     });
 
-    var gaugeOptions = {
 
-        chart: {
-            type: 'solidgauge'
-        },
-
-        title: "",
-
-        pane: {
-            center: ['50%', '85%'],
-            size: '140%',
-            startAngle: -90,
-            endAngle: 90,
-            background: {
-                backgroundColor: (Highcharts.theme && Highcharts.theme.background2) || '#EEE',
-                innerRadius: '60%',
-                outerRadius: '100%',
-                shape: 'arc'
-            }
-        },
-
-        tooltip: {
-            enabled: false
-        },
-
-        // the value axis
-        yAxis: {
-            stops: [
-                [0.1, '#55BF3B'], // green
-                [0.5, '#DDDF0D'], // yellow
-                [0.9, '#DF5353'] // red
-            ],
-            lineWidth: 0,
-            minorTickInterval: null,
-            tickPixelInterval: 400,
-            tickWidth: 0,
-            title: {
-                y: -50
-            },
-            labels: {
-                y: 16
-            }
-        },
-
-        plotOptions: {
-            solidgauge: {
-                dataLabels: {
-                    y: 5,
-                    borderWidth: 0,
-                    useHTML: true
-                }
-            }
-        }
-    };
-
+function change_avg_values() {
     $.ajax(
         {
-            url: base+"data/get_average_temp/",
+            url: base + "data/get_average_value/temperature",
             type: "POST",
-            success: function(data, status)
-            {
+            success: function (data, status) {
                 data = $.parseJSON(data);
-                var min = parseFloat(data[0]['mindata']);
-
+                var min = parseFloat(data[0]['mindata']).toFixed(2);
+                var max = parseFloat(data[0]['maxdata']).toFixed(2);
+                var avg = parseFloat(data[0]['avgdata']).toFixed(2);
                 console.log(parseInt(data[0]['mindata']));
 
-
-                $('#avaragetemperature-box').highcharts(Highcharts.merge(gaugeOptions, {
-
-                    yAxis: {
-                        min: min,
-                        max: parseFloat(data[0]['maxdata']),
-                        title: {
-                            text: 'Average Temperature'
-                        }
-                    },
-
-                    credits: {
-                        enabled: false
-                    },
-
-                    series: [{
-                        name: 'Speed',
-                        data: parseFloat(data[0]['avgdata']),
-                        dataLabels: {
-                            format: '<div style="text-align:center"><span style="font-size:25px;color:' +
-                            ((Highcharts.theme && Highcharts.theme.contrastTextColor) || 'black') + '">{y}</span><br/>' +
-                            '<span style="font-size:12px;color:silver">celsius</span></div>'
-                        },
-                        tooltip: {
-                            valueSuffix: 'celsius'
-                        }
-                    }]
-
-                }));
+                $("#avgtemp-box").empty();
+                var avgTemp = new JustGage({
+                    id: "avgtemp-box",
+                    value: avg,
+                    min: min,
+                    max: max,
+                    title: "Average Temperature"
+                });
 
 
             },
-            error: function(xhr, desc, err)
-            {
+            error: function (xhr, desc, err) {
+                console.log(xhr);
+                console.log(desc);
+                console.log(err);
+            }
+        }
+    )
+    $.ajax(
+        {
+            url: base + "data/get_average_value/efficiency",
+            type: "POST",
+            success: function (data, status) {
+                data = $.parseJSON(data);
+                var min = parseFloat(data[0]['mindata']).toFixed(2);
+                var max = parseFloat(data[0]['maxdata']).toFixed(2);
+                var avg = parseFloat(data[0]['avgdata']).toFixed(2);
+                console.log(parseInt(data[0]['mindata']));
+
+                $("#avgeff-box").empty();
+                var avgEff = new JustGage({
+                    id: "avgeff-box",
+                    value: avg,
+                    min: min,
+                    max: max,
+                    title: "Average Efficiency"
+                });
+
+
+            },
+            error: function (xhr, desc, err) {
                 console.log(xhr);
                 console.log(desc);
                 console.log(err);
@@ -370,68 +324,43 @@ $(document).ready(function() {
         }
     )
 
+    $.ajax(
+        {
+            url: base + "data/get_average_value/power",
+            type: "POST",
+            success: function (data, status) {
+                data = $.parseJSON(data);
+                var min = parseFloat(data[0]['mindata']).toFixed(2);
+                var max = parseFloat(data[0]['maxdata']).toFixed(2);
+                var avg = parseFloat(data[0]['avgdata']).toFixed(2);
+                console.log(parseInt(data[0]['mindata']));
 
+                $("#avgpower-box").empty();
+                var g = new JustGage({
+                    id: "avgpower-box",
+                    value: avg,
+                    min: min,
+                    max: max,
+                    title: "Average power"
+                });
+
+
+            },
+            error: function (xhr, desc, err) {
+                console.log(xhr);
+                console.log(desc);
+                console.log(err);
+            }
+        }
+    )
+
+}   var avgTemp,avgEff,avgPower;
+    change_avg_values();
+    setInterval(function(){ change_avg_values()}, 3000);
     // The speed gauge
 
     // The RPM gauge
-    $('#container-rpm').highcharts(Highcharts.merge(gaugeOptions, {
-        yAxis: {
-            min: 0,
-            max: 5,
-            title: {
-                text: 'RPM'
-            }
-        },
 
-        series: [{
-            name: 'RPM',
-            data: [1],
-            dataLabels: {
-                format: '<div style="text-align:center"><span style="font-size:25px;color:' +
-                ((Highcharts.theme && Highcharts.theme.contrastTextColor) || 'black') + '">{y:.1f}</span><br/>' +
-                '<span style="font-size:12px;color:silver">* 1000 / min</span></div>'
-            },
-            tooltip: {
-                valueSuffix: ' revolutions/min'
-            }
-        }]
-
-    }));
-
-    // Bring life to the dials
-    setTimeout(function () {
-        // Speed
-        var chart = $('#container-speed').highcharts(),
-            point,
-            newVal,
-            inc;
-
-        if (chart) {
-            point = chart.series[0].points[0];
-            inc = Math.round((Math.random() - 0.5) * 100);
-            newVal = point.y + inc;
-
-            if (newVal < 0 || newVal > 200) {
-                newVal = point.y - inc;
-            }
-
-            point.update(newVal);
-        }
-
-        // RPM
-        chart = $('#container-rpm').highcharts();
-        if (chart) {
-            point = chart.series[0].points[0];
-            inc = Math.random() - 0.5;
-            newVal = point.y + inc;
-
-            if (newVal < 0 || newVal > 5) {
-                newVal = point.y - inc;
-            }
-
-            point.update(newVal);
-        }
-    }, 2000);
 
 
 

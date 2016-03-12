@@ -4,27 +4,94 @@
  * User: yash
  * Date: 3/8/16
  * Time: 12:21 PM
- */?>
+ */
+?>
+<html >
+<head>
+    <link href='http://fonts.googleapis.com/css?family=Titillium+Web:400,300,600' rel='stylesheet' type='text/css'>
+    <link href="<?php echo base_url()?>files/style.css" rel="stylesheet">
 
-<section class="container">
-    <div class="login">
-        <h1>Login to Web App</h1>
-        <form method="post" action="index.html">
-            <p><input type="text" name="login" value="" placeholder="Username or Email"></p>
-            <p><input type="password" name="password" value="" placeholder="Password"></p>
-            <p class="remember_me">
-                <label>
-                    <input type="checkbox" name="remember_me" id="remember_me">
-                    Remember me on this computer
-                </label>
-            </p>
-            <p class="submit"><input type="submit" name="commit" value="Login"></p>
-        </form>
-    </div>
+</head>
 
-    <div class="login-help">
-        <p>Forgot your password? <a href="index.html">Click here to reset it</a></p>
-    </div>
-</section>
+<body>
+<div class="form">
+    <ul class="tab-group">
+        <li class="tab active"><a href="#signup">Sign Up</a></li>
+        <li class="tab"><a href="#login">Log In</a></li>
+    </ul>
 
+    <div class="tab-content">
+        <div id="signup">
+            <h1>Sign Up</h1>
+            <form action="javascript:void(0)" method="post">
+                <div class="top-row">
+                    <div class="field-wrap">
+                        <label>
+                            First Name<span class="req">*</span>
+                        </label>
+                        <input id="fname" type="text" required autocomplete="off" />
+                    </div>
+
+                    <div class="field-wrap">
+                        <label>
+                            Last Name<span class="req">*</span>
+                        </label>
+                        <input id="lname" type="text"required autocomplete="off"/>
+                    </div>
+                </div>
+
+                <div class="field-wrap">
+                    <label>
+                        Email Address<span class="req">*</span>
+                    </label>
+                    <input id="email" type="email"required autocomplete="off"/>
+                </div>
+
+                <div class="field-wrap">
+                    <label>
+                        Set A Password<span class="req">*</span>
+                    </label>
+                    <input id="pass" type="password"required autocomplete="off"/>
+                </div>
+
+                <button type="submit" class="button button-block"/>Register</button>
+
+            </form>
+
+        </div>
+
+        <div id="login">
+            <form action="javascript:void(0)" method="post">
+
+                <div class="field-wrap">
+                    <label>
+                        Email Address<span class="req">*</span>
+                    </label>
+                    <input id="login-email" type="email"required autocomplete="off"/>
+                </div>
+
+                <div class="field-wrap">
+                    <label>
+                        Password<span class="req">*</span>
+                    </label>
+                    <input id="login-pass" type="password"required autocomplete="off"/>
+                </div>
+
+                <p class="forgot"><a href="#">Forgot Password?</a></p>
+
+                <button type="submit" class="button button-block"/>Login</button>
+
+            </form>
+
+        </div>
+
+    </div><!-- tab-content -->
+
+</div> <!-- /form -->
+<!--<script src='http://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js'></script>-->
+
+<script src="<?php echo base_url()?>files/index.js"></script>
+
+</body>
+</html>
 

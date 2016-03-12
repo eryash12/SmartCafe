@@ -52,4 +52,37 @@ class User_model extends CI_Model
     function set_current_value($topic,$value){
         $this->db->query("UPDATE current_values SET value = $value where tag = '$topic'");
     }
+    function signup_user($data){
+        $email = $data->email;
+        $check =  $this->db->query("select email from users where email = '$email'");
+        $fname = $data->fname;
+        $lname = $data->lname;
+        $password = $data->pass;
+        if($check->num_rows() > 0){
+            return "duplicate";
+        }
+        else{
+            $this->db->query("INSERT INTO SmartCafe_db.users (fname, lname, password,email) VALUES ('$fname', '$lname', '$password' , '$email')");
+            return "success";
+        }
+        return "null";
+    }
+    function login_user($data){
+        $email = $data->email;
+        $password = $data->pass;
+        $check =  $this->db->query("select password from users where email = '$email'");
+        if($check->num_rows() > 0){
+            $obj = $check->result_array();
+            $pass = $obj[0]["password"];
+            if($pass == $password){
+                return "success";
+            }
+            else{
+                return "wrong-pass";
+            }
+        }
+        else{
+            echo "fail";
+        }
+    }
 }

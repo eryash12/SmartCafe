@@ -47,17 +47,38 @@ class Data extends CI_Controller{
         echo json_encode($data);
     }
 
-   function get_average_temp(){
+   function get_average_value($value){
        $this->output->set_header('HTTP/1.0 200 OK');
        $this->load->model('user_model');
 
-       $temp = $this->user_model->get_avg_value('temperature');
+       $temp = $this->user_model->get_avg_value($value);
        echo json_encode($temp);
    }
     function set_current_value($topic,$value){
         $this->load->model('user_model');
         $this->user_model->set_current_value($topic,$value);
 
+    }
+    function sign_up_user(){
+        $this->output->set_header('HTTP/1.0 200 OK');
+        $data = $this->input->post('abcd');
+
+        $data = json_decode($data);
+//        echo $data->fname;
+
+        $this->load->model('user_model');
+        $status = $this->user_model->signup_user($data);
+        echo $status;
+    }
+    function user_login(){
+        $data = $this->input->post('abcd');
+
+        $data = json_decode($data);
+
+
+        $this->load->model('user_model');
+        $status = $this->user_model->login_user($data);
+        echo $status;
     }
 
 }
