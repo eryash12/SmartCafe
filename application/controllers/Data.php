@@ -59,6 +59,13 @@ class Data extends CI_Controller{
         $this->user_model->set_current_value($topic,$value);
 
     }
+    function get_all_current_values(){
+        $this->output->set_header('HTTP/1.0 200 OK');
+        $this->load->model('user_model');
+        $data = $this->user_model->get_all_current_values();
+        echo json_encode($data);
+
+    }
     function sign_up_user(){
         $this->output->set_header('HTTP/1.0 200 OK');
         $data = $this->input->post('abcd');

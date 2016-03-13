@@ -85,4 +85,13 @@ class User_model extends CI_Model
             echo "fail";
         }
     }
+    function get_all_current_values(){
+
+            $this->db->select("*");
+            $this->db->from("current_values");
+//            $this->db->where('tag',$topic);
+            $result = $this->db->get();
+            return $result->result_array();
+
+    }
 }

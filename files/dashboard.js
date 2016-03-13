@@ -216,7 +216,7 @@ $(document).ready(function() {
 
 
     });
-    $("[name='motor-checkbox']").bootstrapSwitch();
+     $("[name='motor-checkbox']").bootstrapSwitch();
     $('input[name="motor-checkbox"]').on('switchChange.bootstrapSwitch', function(event, state) {
         console.log(this); // DOM element
         console.log(event); // jQuery event
@@ -263,8 +263,77 @@ $(document).ready(function() {
         }
     });
 
-
+var system,valve,threshold;
 function change_avg_values() {
+    $.ajax(
+        {
+            url: base + "data/get_all_current_values",
+            type: "POST",
+            success: function (data, status) {
+                data = $.parseJSON(data);
+                console.log(data);
+                for(var i = 0; i < data.length ; ++i ){
+                    if(data[i]["tag"] === 'system'){
+                        system = data[i]["value"];
+                    }
+                    if(data[i]["tag"] === 'valve'){
+                        valve = data[i]["value"];
+                    }
+                    if(data[i]["tag"] === 'threshold'){
+                        threshold = data[i]["value"];
+                    }
+
+                }
+                if(system === '1'){
+                    $("[name='sensor-checkbox']").bootstrapSwitch('state', true,true);
+                }
+                else{
+                    $("[name='sensor-checkbox']").bootstrapSwitch('state', false,true);
+                }
+                if(valve === '1'){
+                    $("[name='motor-checkbox']").bootstrapSwitch('state', true,true);
+                }
+                else{
+                    $("[name='motor-checkbox']").bootstrapSwitch('state', false,true);
+                }
+
+            },
+            error: function (xhr, desc, err) {
+                console.log(xhr);
+                console.log(desc);
+                console.log(err);
+            }
+        }
+    )
+    $.ajax(
+        {
+            url: base + "data/get_average_value/irradiance",
+            type: "POST",
+            success: function (data, status) {
+                data = $.parseJSON(data);
+                var min = parseFloat(data[0]['mindata']).toFixed(2);
+                var max = parseFloat(data[0]['maxdata']).toFixed(2);
+                var avg = parseFloat(data[0]['avgdata']).toFixed(2);
+                console.log(parseInt(data[0]['mindata']));
+
+                $("#avgirr-box").empty();
+                var avgTemp = new JustGage({
+                    id: "avgirr-box",
+                    value: avg,
+                    min: min,
+                    max: max,
+                    title: "Average Irradiance"
+                });
+
+
+            },
+            error: function (xhr, desc, err) {
+                console.log(xhr);
+                console.log(desc);
+                console.log(err);
+            }
+        }
+    )
     $.ajax(
         {
             url: base + "data/get_average_value/temperature",
@@ -356,7 +425,7 @@ function change_avg_values() {
 
 }   var avgTemp,avgEff,avgPower;
     change_avg_values();
-    setInterval(function(){ change_avg_values()}, 3000);
+    setInterval(function(){ change_avg_values()}, 10000);
     // The speed gauge
 
     // The RPM gauge
