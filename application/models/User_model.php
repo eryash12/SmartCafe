@@ -94,4 +94,7 @@ class User_model extends CI_Model
             return $result->result_array();
 
     }
+    function delete_log(){
+        $this->db->query("DELETE FROM sensors_data WHERE 1");
+    }
 }

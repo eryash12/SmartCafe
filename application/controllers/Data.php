@@ -57,6 +57,9 @@ class Data extends CI_Controller{
     function set_current_value($topic,$value){
         $this->load->model('user_model');
         $this->user_model->set_current_value($topic,$value);
+        if($topic == "system" && $value == "0"){
+            $this->user_model->delete_log();
+        }
 
     }
     function get_all_current_values(){
