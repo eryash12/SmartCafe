@@ -41,13 +41,14 @@ class Home extends CI_Controller
         $this->user_model->write_data($temp, $irr, $eff, $power);
         $system = $this->user_model->get_current_value('system');
         $valve = $this->user_model->get_current_value('valve');
+        $threshold = $this->user_model->get_current_value('threshold');
 
         $system = $system[0]["value"];
         $valve = $valve[0]["value"];
-
+        $threshold = $threshold[0]["value"];
         $data["system"] = intval($system);
         $data["valve"] = intval($valve);
-        $data["threshold"]=28;
+        $data["threshold"]=intval($threshold);
         echo json_encode($data);
 //        echo addslashes(json_encode($data));
 //        echo "system=$system\rvalve=$valve\r";

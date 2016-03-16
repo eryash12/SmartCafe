@@ -246,20 +246,23 @@ $(document).ready(function() {
             }
         )
     });
+    function toCelsius(f) {
+        return (5/9) * (f-32);
+    }
     $.simpleWeather({
         location: 'Santa Clara,CA',
         woeid: '',
-        unit: 'f',
+        unit: 'c',
         success: function(weather) {
-            html = '<h2><i class="icon-'+weather.code+'"></i> '+weather.temp+'&deg;'+weather.units.temp+'</h2>';
+            html = '<p><i class="icon-'+weather.code+'"></i> '+weather.temp+'&deg;'+weather.units.temp+'</p>';
             html += '<ul><li>'+weather.city+', '+weather.region+'</li>';
             html += '<li class="currently">'+weather.currently+'</li>';
             html += '<li>'+weather.wind.direction+' '+weather.wind.speed+' '+weather.units.speed+'</li></ul>';
 
-            $("#weather-box").html(html);
+            $("#weather-box").append(html);
         },
         error: function(error) {
-            $("#weather").html('<p>'+error+'</p>');
+            $("#weather").append('<p>'+error+'</p>');
         }
     });
 
@@ -296,6 +299,7 @@ function change_avg_values() {
                 else{
                     $("[name='motor-checkbox']").bootstrapSwitch('state', false,true);
                 }
+                $("#threshold").val(threshold);
 
             },
             error: function (xhr, desc, err) {
@@ -421,6 +425,36 @@ function change_avg_values() {
                 console.log(err);
             }
         }
+
+    )
+    $.ajax(
+        {
+            url: base + "data/get_average_value/efficiency",
+            type: "POST",
+            success: function (data, status) {
+                data = $.parseJSON(data);
+                var min = parseFloat(data[0]['mindata']).toFixed(2);
+                var max = parseFloat(data[0]['maxdata']).toFixed(2);
+                var avg = parseFloat(data[0]['avgdata']).toFixed(2);
+                console.log(parseInt(data[0]['mindata']));
+
+                $("#avgeff-box").empty();
+                var avgEff = new JustGage({
+                    id: "avgeff-box",
+                    value: avg,
+                    min: min,
+                    max: max,
+                    title: "Average Efficiency"
+                });
+
+
+            },
+            error: function (xhr, desc, err) {
+                console.log(xhr);
+                console.log(desc);
+                console.log(err);
+            }
+        }
     )
 
 }   var avgTemp,avgEff,avgPower;
@@ -431,7 +465,29 @@ function change_avg_values() {
     // The RPM gauge
 
 
+    $('#set-threshold').on('click',function(e){
+        var temp = $('#threshold').val();
+        $.ajax(
+            {
+                url: base + "data/set_current_value/threshold/"+temp,
+                type: "POST",
+                success: function (data, status) {
+                    alert("Threshold set");
+                    //if (data !== 'success')
+                    //{
+                    //    alert("Error Contacting the server");
+                    //}
 
+
+                },
+                error: function (xhr, desc, err) {
+                    console.log(xhr);
+                    console.log(desc);
+                    console.log(err);
+                }
+            }
+        )
+    });
 
 
 });

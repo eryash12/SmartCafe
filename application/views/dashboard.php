@@ -33,8 +33,22 @@
         <h3 style="margin-top: 0px">Water</h3><br/>
         <input type="checkbox" name="motor-checkbox" class="switch" checked>
     </div>
-    <div id="weather-box" class="col-md-2 box-small" style="margin-top: 15px"></div>
-    <div id="sb1" class="col-md-2 box-small" style="margin-top: 15px"></div>
+    <div id="weather-box" class="col-md-2 box-small" style="margin-top: 15px;">
+        <b><p>Current Weather</p></b><br/>
+
+    </div>
+    <div id="sb1" class="col-md-2 box-small" style="margin-top: 15px">
+        <b><p>Current Threshold</p></b><br/>
+        <div class="col-lg-6">
+            <div class="input-group">
+                <input type="text" id="threshold" class="form-control" style="width: 70px" placeholder="Search for...">
+                <span class="input-group-btn">
+                <button class="btn btn-default" id="set-threshold" type="button">Set</button>
+                </span>
+            </div><!-- /input-group -->
+        </div><!-- /.col-lg-6 -->
+    </div><!-- /.row -->
+    </div>
 <!--    <div id="chart2" class="col-md-4 box-big" style="height: 300px; width: 500px;">-->
 <!--        <img src="--><?php //echo base_url();?><!--files/img/chart.png" style="height: 200px;width: 400px" alt=""/>-->
 <!--    </div>-->
