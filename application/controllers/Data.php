@@ -60,7 +60,8 @@ class Data extends CI_Controller{
         if($topic == "system" && $value == "0"){
             $this->user_model->delete_log();
         }
-
+        $this->output->set_header('HTTP/1.0 200 OK');
+        echo "success";
     }
     function get_all_current_values(){
         $this->output->set_header('HTTP/1.0 200 OK');
