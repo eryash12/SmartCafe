@@ -17,6 +17,7 @@ class Data extends CI_Controller{
        $this->load->model('user_model');
         $temp = $this->user_model->get_current_value('temperature');
        $eff = $this->user_model->get_current_value('efficiency');
+
 //       foreach ($temp as $v){
 //           echo $v["temperature"];
 //           echo "<br>";

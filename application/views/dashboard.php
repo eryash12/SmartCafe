@@ -5,7 +5,9 @@
 <!--<script src="http://code.highcharts.com/modules/solid-gauge.js"></script>-->
 <script src="<?php echo base_url()?>files/justgage.js"></script>
 <script src="<?php echo base_url()?>files/raphael-2.1.4.min.js"></script>
-
+<script>
+    var system_default = <?php echo $system  ?>;
+</script>
 <div class="container dash-body">
 <!--    <div id="weather-box" class="col-md-2">-->
 <!--        <a href="http://www.accuweather.com/en/us/santa-clara-ca/95050/weather-forecast/331977" class="aw-widget-legal">-->
@@ -49,6 +51,7 @@
         </div><!-- /.col-lg-6 -->
     </div><!-- /.row -->
     </div>
+<input type="text" id="sessiontime" class="form-control" style="width: 70px" placeholder="Search for...">
 <!--    <div id="chart2" class="col-md-4 box-big" style="height: 300px; width: 500px;">-->
 <!--        <img src="--><?php //echo base_url();?><!--files/img/chart.png" style="height: 200px;width: 400px" alt=""/>-->
 <!--    </div>-->

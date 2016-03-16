@@ -2,6 +2,13 @@
  * Created by yash on 3/3/16.
  */
 $(document).ready(function() {
+    if(system_default === 1 ) {
+        var startTimeStamp = Math.floor(Date.now() / 1000);;
+    }
+    else{
+        var startTimeStamp = 0;
+    }
+    var currentTimeStamp = 0;
     function plot_temp_eff_graph() {
         var dps = []; // dataPoints
         var dps2 = [];
@@ -13,10 +20,10 @@ $(document).ready(function() {
                 text: "Live Temperature(Blue) and Efficiency(Red) vs Time Graph "
             },
             axisX: {
-                title: "Time (Seconds)"
+                title: "Time(Seconds)"
             },
             axisY: {
-                title: "Temperature (Celsius)"
+                title: "Temperature(C)"
             },
             axisY2: {
                 title: "Efficiency ",
@@ -107,10 +114,10 @@ $(document).ready(function() {
                 title: "Time (Seconds)"
             },
             axisY: {
-                title: "Irradiance"
+                title: "Irradiance(W/m^2)"
             },
             axisY2: {
-                title: "Power "
+                title: "Power(Wh) "
             },
             data: [{
                 type: "line",
@@ -190,6 +197,7 @@ $(document).ready(function() {
         var flag = 0 ;
         if(state) {
             flag = 1;
+            startTimeStamp =  Math.floor(Date.now() / 1000);
         }
 
         $.ajax(
@@ -403,11 +411,18 @@ function change_avg_values() {
             type: "POST",
             success: function (data, status) {
                 data = $.parseJSON(data);
+                currentTimeStamp =  Math.floor(Date.now() / 1000);
+                var timediff = currentTimeStamp-startTimeStamp;
+
+                console.log(timediff);
+
                 var min = parseFloat(data[0]['mindata']).toFixed(2);
                 var max = parseFloat(data[0]['maxdata']).toFixed(2);
                 var avg = parseFloat(data[0]['avgdata']).toFixed(2);
                 console.log(parseInt(data[0]['mindata']));
-
+                timediff = timediff/3600;
+                var totalPower = avg*timediff;
+                $("#sessiontime").val(totalPower);
                 $("#avgpower-box").empty();
                 var g = new JustGage({
                     id: "avgpower-box",

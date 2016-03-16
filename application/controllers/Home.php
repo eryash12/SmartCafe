@@ -10,12 +10,15 @@ class Home extends CI_Controller
     }
 
     function index()
-    {
+    {   $this->load->model('user_model');
         $this->output->set_header("Access-Control-Allow-Origin: *");
         $this->output->set_header("Access-Control-Expose-Headers: Access-Control-Allow-Origin");
         $params['title'] = "Dashboard";
+        $system = $this->user_model->get_current_value('system');
+        $system = $system[0]["value"];
+        $dashdata['system'] = $system;
         $this->load->view('header', $params);
-        $this->load->view('dashboard');
+        $this->load->view('dashboard',$dashdata);
         $this->load->view('footer');
 
 
@@ -42,7 +45,7 @@ class Home extends CI_Controller
         $valve = $valve[0]["value"];
         $threshold = $threshold[0]["value"];
 
-        if($system == "1")
+        if($system == "1" && ($temp!= "0" && $irr!="0" && $eff!="0" && $power!="0") )
         $this->user_model->write_data($temp, $irr, $eff, $power);
 //        $system = $this->user_model->get_current_value('system');
 //        $valve = $this->user_model->get_current_value('valve');
