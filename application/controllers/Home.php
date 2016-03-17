@@ -44,8 +44,8 @@ class Home extends CI_Controller
         $system = $system[0]["value"];
         $valve = $valve[0]["value"];
         $threshold = $threshold[0]["value"];
-
-        if($system == "1" && ($temp!= "0" && $irr!="0" && $eff!="0" && $power!="0") )
+//        && ($temp!= "0" && $irr!="0" && $eff!="0" && $power!="0")
+        if($system == "1"  )
         $this->user_model->write_data($temp, $irr, $eff, $power);
 //        $system = $this->user_model->get_current_value('system');
 //        $valve = $this->user_model->get_current_value('valve');
