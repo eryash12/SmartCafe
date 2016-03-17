@@ -40,6 +40,26 @@
 #weather-box p{
     margin: 0px;
 }
+#avgpower-box{
+    text-anchor: middle;
+    font-family: sans-serif;
+    font-size: 14px;
+    /*font-weight: bold;*/
+    fill-opacity: 1;
+    margin-top: 10px;
+    vertical-align:middle;
+    text-align:center;}
+#avgpower-box span{
+    font-size: 50px;
+}
+#avgpower-box p{
+    font-weight: bold;
+    margin-top: 8px;
+    /*color: #bebfc1;*/
+}
+.box-small tspan{
+    /*color: #000000;*/
+}
 /*priyams css*/
 
 /*priyams css end*/

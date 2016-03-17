@@ -422,15 +422,16 @@ function change_avg_values() {
                 console.log(parseInt(data[0]['mindata']));
                 timediff = timediff/3600;
                 var totalPower = avg*timediff;
-                $("#sessiontime").val(totalPower);
-                $("#avgpower-box").empty();
-                var g = new JustGage({
-                    id: "avgpower-box",
-                    value: avg,
-                    min: min,
-                    max: max,
-                    title: "Average power"
-                });
+                totalPower.toFixed(1);
+                $("#power").html(totalPower);
+                //$("#avgpower-box").empty();
+                //var g = new JustGage({
+                //    id: "avgpower-box",
+                //    value: avg,
+                //    min: min,
+                //    max: max,
+                //    title: "Average power"
+                //});
 
 
             },

@@ -23,7 +23,10 @@
     <div id="avgirr-box" style="padding: 0;" class="col-md-2 box-small"></div>
     <div id="avgtemp-box"  style="padding:0;" class="col-md-2 box-small"></div>
     <div id="avgeff-box" style="margin-top:15px;padding:0;" class="col-md-2 box-small"></div>
-    <div id="avgpower-box" class="col-md-2 box-small" style="margin-top: 15px;padding:0;"></div>
+    <div id="avgpower-box" class="col-md-2 box-small" style="margin-top: 15px;padding:0;">
+        <p>Power Generated</p>
+       <span><span id="power">N/A</span>Wh</span>
+    </div>
     <div id="bb2" class="col-md-4 box-big" style="margin-top: 15px">
         <div id="chart2" style="height: 100%; width: 100%;"></div>
     </div>
@@ -51,7 +54,7 @@
         </div><!-- /.col-lg-6 -->
     </div><!-- /.row -->
     </div>
-<input type="text" id="sessiontime" class="form-control" style="width: 70px" placeholder="Search for...">
+<!--<input type="text" id="sessiontime" class="form-control" style="width: 70px" placeholder="Search for...">-->
 <!--    <div id="chart2" class="col-md-4 box-big" style="height: 300px; width: 500px;">-->
 <!--        <img src="--><?php //echo base_url();?><!--files/img/chart.png" style="height: 200px;width: 400px" alt=""/>-->
 <!--    </div>-->
