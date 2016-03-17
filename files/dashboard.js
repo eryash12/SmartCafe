@@ -422,7 +422,7 @@ function change_avg_values() {
                 console.log(parseInt(data[0]['mindata']));
                 timediff = timediff/3600;
                 var totalPower = avg*timediff;
-                parseFloat(totalPower).toFixed(1);
+                totalPower = parseFloat(totalPower).toFixed(3);
                 $("#power").html(totalPower);
                 //$("#avgpower-box").empty();
                 //var g = new JustGage({
