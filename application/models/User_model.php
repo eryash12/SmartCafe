@@ -30,6 +30,20 @@ class User_model extends CI_Model
 
 
     }
+    function write_current_data($temp,$irr,$eff,$power){
+//        $data['firstname'] = json_encode($a);
+
+
+
+        $this->db->query("UPDATE current_values SET value = $temp where tag = 'temperature'");
+        $this->db->query("UPDATE current_values SET value = $irr where tag = 'irradiance'");
+        $this->db->query("UPDATE current_values SET value = $eff where tag = 'efficiency'");
+        $this->db->query("UPDATE current_values SET value = $power where tag = 'power'");
+
+
+
+    }
+
     function get_current_value($topic){
         $this->db->select("value");
         $this->db->from("current_values");
