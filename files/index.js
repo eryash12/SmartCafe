@@ -53,24 +53,28 @@ $( "#signup form" ).submit(function( event ) {
     data["email"] = $("#email").val();
     data["pass"] = $("#pass").val();
     var data1 = JSON.stringify(data);
-    $.ajax(
-        {
-            url: base+"data/sign_up_user/",
-            data: {abcd:data1},
-            type: "POST",
-            success: function(data, status)
-            {
-
-                alert(data);
-            },
-            error: function(xhr, desc, err)
-            {
-                console.log(xhr);
-                console.log(desc);
-                console.log(err);
-            }
-        }
-    )
+    //$.ajax(
+    //    {
+    //        url: base+"data/sign_up_user/",
+    //        data: {abcd:data1},
+    //        type: "POST",
+    //        success: function(data, status)
+    //        {
+    //
+    //            alert(data);
+    //        },
+    //        error: function(xhr, desc, err)
+    //        {
+    //            console.log(xhr);
+    //            console.log(desc);
+    //            console.log(err);
+    //        }
+    //    }
+    //)
+    $.post( base+"data/sign_up_user/", { abcd: data1 })
+        .done(function( data ) {
+            alert( "Data Loaded: " + data );
+        });
 });
 $( "#login form" ).submit(function( event ) {
 
