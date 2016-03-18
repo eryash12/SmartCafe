@@ -55,18 +55,17 @@ class Data extends CI_Controller{
        $temp = $this->user_model->get_avg_value($value);
        echo json_encode($temp);
    }
-    function set_current_value($topic,$value){
+    function set_current_value($topic,$value,$time = null){
         $this->output->set_header('HTTP/1.0 200 OK');
         $this->load->model('user_model');
         $this->user_model->set_current_value($topic,$value);
         if($topic == "system" && $value == "1"){
-            $data = $this->input->post('abcd');
-            $data = json_decode($data);
-            echo "<pre>";
-            print_r($data);
-            echo "</pre>";
-//            $this->user_model->set_current_value('start',"'".$time."'");
-//            echo $time;
+
+//            echo "<pre>";
+//            print_r($data);
+//            echo "</pre>";
+            $this->user_model->set_current_value('start',"'".$time."'");
+            echo $time;
         }
         if($topic == "system" && $value == "0"){
             $this->user_model->delete_log();
@@ -82,20 +81,24 @@ class Data extends CI_Controller{
         echo json_encode($data);
 
     }
-    function sign_up_user(){
+    function sign_up_user($fname,$lname,$email,$password){
         $this->output->set_header('HTTP/1.0 200 OK');
-        $data = $_POST['abcd'];
-        echo "<pre>";
-        print_r($data);
-        echo "</pre>";
+        $fname = urldecode($fname);
+        $lname = urldecode($lname);
+        $email = urldecode($email);
+        $password = urldecode($password);
+//        $data = $_POST['abcd'];
+//        echo "<pre>";
+//        print_r($data);
+//        echo "</pre>";
 
-        $data = json_decode($data);
+//        $data = json_decode($data);
 //        echo $data->fname;
 
-//        $this->load->model('user_model');
-//        $status = $this->user_model->signup_user($data);
-//        echo $status;
-        echo "yes";
+        $this->load->model('user_model');
+        $status = $this->user_model->signup_user($fname,$lname,$email,$password);
+        echo $status;
+//        echo "yes";
     }
     function user_login(){
         $data = $this->input->post('abcd');

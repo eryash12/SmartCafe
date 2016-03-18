@@ -48,11 +48,15 @@ $('.tab a').on('click', function (e) {
 $( "#signup form" ).submit(function( event ) {
 
     var data = {};
-    data["fname"] = $( "input:first" ).val();
-    data["lname"] = $( "#lname" ).val();
-    data["email"] = $("#email").val();
-    data["pass"] = $("#pass").val();
-    var data1 = JSON.stringify(data);
+    var fname = $( "input:first" ).val();
+    var lname = $( "#lname" ).val();
+    var email = $("#email").val();
+    var pass = $("#pass").val();
+    fname = encodeURIComponent(fname);
+    lname = encodeURIComponent(lname);
+    email = encodeURIComponent(email);
+    pass = encodeURIComponent(pass);
+    //var data1 = JSON.stringify(data);
     //$.ajax(
     //    {
     //        url: base+"data/sign_up_user/",
@@ -71,7 +75,7 @@ $( "#signup form" ).submit(function( event ) {
     //        }
     //    }
     //)
-    $.post( base+"data/sign_up_user/", { abcd: data1 })
+    $.post( base+"data/sign_up_user/"+fname+"/"+lname+"/"+email+"/"+pass, { })
         .done(function( data ) {
             alert( "Data Loaded: " + data );
         });

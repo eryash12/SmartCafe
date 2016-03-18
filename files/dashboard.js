@@ -205,8 +205,8 @@ $(document).ready(function() {
         data = JSON.stringify(data);
         $.ajax(
             {
-                url: base + "data/set_current_value/system/"+flag,
-                data: {abcd:data},
+                url: base + "data/set_current_value/system/"+flag+"/"+startTimeStamp,
+
                 type: "POST",
 
                 success: function (data, status) {
