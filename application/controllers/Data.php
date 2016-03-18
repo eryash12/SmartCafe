@@ -85,13 +85,17 @@ class Data extends CI_Controller{
     function sign_up_user(){
         $this->output->set_header('HTTP/1.0 200 OK');
         $data = $this->input->post('abcd');
+        echo "<pre>";
+        print_r($data);
+        echo "</pre>";
 
         $data = json_decode($data);
 //        echo $data->fname;
 
-        $this->load->model('user_model');
-        $status = $this->user_model->signup_user($data);
-        echo $status;
+//        $this->load->model('user_model');
+//        $status = $this->user_model->signup_user($data);
+//        echo $status;
+        echo "yes";
     }
     function user_login(){
         $data = $this->input->post('abcd');
