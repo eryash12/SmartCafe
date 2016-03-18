@@ -200,7 +200,8 @@ $(document).ready(function() {
             flag = 1;
            startTimeStamp =  Math.floor(Date.now() / 1000);
         }
-        var start = $.parseJSON(startTimeStamp);
+        var data = {};
+        var start = JSON.stringify(startTimeStamp);
         $.ajax(
             {
                 url: base + "data/set_current_value/system/"+flag,
