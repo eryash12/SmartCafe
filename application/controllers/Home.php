@@ -15,8 +15,18 @@ class Home extends CI_Controller
         $this->output->set_header("Access-Control-Expose-Headers: Access-Control-Allow-Origin");
         $params['title'] = "Dashboard";
         $system = $this->user_model->get_current_value('system');
+
         $system = $system[0]["value"];
+        if($system == '1'){
+            $start = $this->user_model->get_current_value('start');
+            $start = $start[0]["value"];
+        }
+        else{
+            $start = 0;
+        }
+
         $dashdata['system'] = $system;
+        $dashdata['start'] = $start;
         $this->load->view('header', $params);
         $this->load->view('dashboard',$dashdata);
         $this->load->view('footer');

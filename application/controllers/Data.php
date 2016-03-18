@@ -56,12 +56,20 @@ class Data extends CI_Controller{
        echo json_encode($temp);
    }
     function set_current_value($topic,$value){
+        $this->output->set_header('HTTP/1.0 200 OK');
         $this->load->model('user_model');
         $this->user_model->set_current_value($topic,$value);
+        if($topic == "system" && $value == "1"){
+            $time = $this->input->post('abcd');
+            $time = json_decode($time);
+            $this->user_model->set_current_value('start',"'".$time."'");
+            echo $time;
+        }
         if($topic == "system" && $value == "0"){
             $this->user_model->delete_log();
+
         }
-        $this->output->set_header('HTTP/1.0 200 OK');
+
         echo "success";
     }
     function get_all_current_values(){
@@ -91,6 +99,11 @@ class Data extends CI_Controller{
         $this->load->model('user_model');
         $status = $this->user_model->login_user($data);
         echo $status;
+    }
+    function test(){
+        $this->load->model('user_model');
+        $this->user_model->set_current_value('start',1458263198);
+
     }
 
 }

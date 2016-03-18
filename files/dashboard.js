@@ -2,13 +2,13 @@
  * Created by yash on 3/3/16.
  */
 $(document).ready(function() {
-    if(system_default === 1 ) {
-        var startTimeStamp = Math.floor(Date.now() / 1000);;
-    }
-    else{
-        var startTimeStamp = 0;
-    }
-    var currentTimeStamp = 0;
+    //if(system_default === 1 ) {
+    //    var startTimeStamp = Math.floor(Date.now() / 1000);;
+    //}
+    //else{
+    //    var startTimeStamp = 0;
+    //}
+    //var currentTimeStamp = 0;
     function plot_temp_eff_graph() {
         var dps = []; // dataPoints
         var dps2 = [];
@@ -195,15 +195,18 @@ $(document).ready(function() {
         console.log(event); // jQuery event
         console.log(state); // true | false
         var flag = 0 ;
+        var startTimeStamp = 0;
         if(state) {
             flag = 1;
-            startTimeStamp =  Math.floor(Date.now() / 1000);
+           startTimeStamp =  Math.floor(Date.now() / 1000);
         }
-
+        var start = $.parseJSON(startTimeStamp);
         $.ajax(
             {
                 url: base + "data/set_current_value/system/"+flag,
+                data: {abcd:start},
                 type: "POST",
+
                 success: function (data, status) {
                     //if (data !== 'success')
                     //{
@@ -292,6 +295,9 @@ function change_avg_values() {
                     }
                     if(data[i]["tag"] === 'threshold'){
                         threshold = data[i]["value"];
+                    }
+                    if(data[i]["tag"] === 'start'){
+                        system_start = data[i]["value"];
                     }
 
                 }
@@ -411,8 +417,9 @@ function change_avg_values() {
             type: "POST",
             success: function (data, status) {
                 data = $.parseJSON(data);
+                if(system_start != 0){
                 currentTimeStamp =  Math.floor(Date.now() / 1000);
-                var timediff = currentTimeStamp-startTimeStamp;
+                var timediff = currentTimeStamp - system_start;
 
                 console.log(timediff);
 
@@ -423,7 +430,10 @@ function change_avg_values() {
                 timediff = timediff/3600;
                 var totalPower = avg*timediff;
                 totalPower = parseFloat(totalPower).toFixed(3);
-                $("#power").html(totalPower);
+                $("#power").html(totalPower);}
+                else{
+                    $("#power").html(0);
+                }
                 //$("#avgpower-box").empty();
                 //var g = new JustGage({
                 //    id: "avgpower-box",

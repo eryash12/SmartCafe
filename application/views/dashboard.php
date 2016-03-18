@@ -7,6 +7,7 @@
 <script src="<?php echo base_url()?>files/raphael-2.1.4.min.js"></script>
 <script>
     var system_default = <?php echo $system  ?>;
+    var system_start = <?php echo $start  ?>;
 </script>
 <div class="container dash-body">
 <!--    <div id="weather-box" class="col-md-2">-->
