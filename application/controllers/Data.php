@@ -62,9 +62,11 @@ class Data extends CI_Controller{
         if($topic == "system" && $value == "1"){
             $data = $this->input->post('abcd');
             $data = json_decode($data);
-            $time = $data->start;
-            $this->user_model->set_current_value('start',"'".$time."'");
-            echo $time;
+            echo "<pre>";
+            print_r($data);
+            echo "</pre>";
+//            $this->user_model->set_current_value('start',"'".$time."'");
+//            echo $time;
         }
         if($topic == "system" && $value == "0"){
             $this->user_model->delete_log();
