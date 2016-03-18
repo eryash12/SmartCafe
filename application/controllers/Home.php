@@ -10,7 +10,22 @@ class Home extends CI_Controller
     }
 
     function index()
-    {   $this->load->model('user_model');
+    {
+        $this->output->set_header("Access-Control-Allow-Origin: *");
+        $this->output->set_header("Access-Control-Expose-Headers: Access-Control-Allow-Origin");
+        $params['title'] = "Dashboard";
+        $this->load->view('header', $params);
+        $this->load->view('login');
+        $this->load->view('footer');
+
+    }
+
+    function login(){
+
+    }
+    function dashboard()
+    {
+        $this->load->model('user_model');
         $this->output->set_header("Access-Control-Allow-Origin: *");
         $this->output->set_header("Access-Control-Expose-Headers: Access-Control-Allow-Origin");
         $params['title'] = "Dashboard";
@@ -30,20 +45,6 @@ class Home extends CI_Controller
         $this->load->view('header', $params);
         $this->load->view('dashboard',$dashdata);
         $this->load->view('footer');
-
-
-    }
-    function login(){
-        $this->output->set_header("Access-Control-Allow-Origin: *");
-        $this->output->set_header("Access-Control-Expose-Headers: Access-Control-Allow-Origin");
-        $params['title'] = "Dashboard";
-        $this->load->view('header', $params);
-        $this->load->view('login');
-        $this->load->view('footer');
-    }
-    function dashboard()
-    {
-
     }
 
     function send_data($temp, $irr, $eff, $power)

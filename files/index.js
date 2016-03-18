@@ -78,6 +78,7 @@ $( "#signup form" ).submit(function( event ) {
     $.post( base+"data/sign_up_user/"+fname+"/"+lname+"/"+email+"/"+pass, { })
         .done(function( data ) {
             alert( data );
+            window.location.replace(base);
         });
 });
 $( "#login form" ).submit(function( event ) {
@@ -96,7 +97,7 @@ $( "#login form" ).submit(function( event ) {
             success: function(data, status)
             {
                 if(data === "success"){
-                   alert("success");
+                    window.location.replace(base+"home/dashboard");
                 }
             },
             error: function(xhr, desc, err)
