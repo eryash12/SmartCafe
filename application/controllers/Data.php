@@ -104,6 +104,7 @@ class Data extends CI_Controller{
 //        $data = $this->input->post('abcd');
 //
 //        $data = json_decode($data);
+        $this->output->set_header('HTTP/1.0 200 OK');
         $email = urldecode($email);
         $password = urldecode($password);
 
