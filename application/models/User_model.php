@@ -81,9 +81,8 @@ class User_model extends CI_Model
         }
         return "null";
     }
-    function login_user($data){
-        $email = $data->email;
-        $password = $data->pass;
+    function login_user($email,$password){
+
         $check =  $this->db->query("select password from users where email = '$email'");
         if($check->num_rows() > 0){
             $obj = $check->result_array();

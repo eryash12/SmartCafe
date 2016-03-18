@@ -100,14 +100,16 @@ class Data extends CI_Controller{
         echo $status;
 //        echo "yes";
     }
-    function user_login(){
-        $data = $this->input->post('abcd');
-
-        $data = json_decode($data);
+    function user_login($email,$password){
+//        $data = $this->input->post('abcd');
+//
+//        $data = json_decode($data);
+        $email = urldecode($email);
+        $password = urldecode($password);
 
 
         $this->load->model('user_model');
-        $status = $this->user_model->login_user($data);
+        $status = $this->user_model->login_user($email,$password);
         echo $status;
     }
     function test(){

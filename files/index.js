@@ -77,25 +77,26 @@ $( "#signup form" ).submit(function( event ) {
     //)
     $.post( base+"data/sign_up_user/"+fname+"/"+lname+"/"+email+"/"+pass, { })
         .done(function( data ) {
-            alert( "Data Loaded: " + data );
+            alert( data );
         });
 });
 $( "#login form" ).submit(function( event ) {
 
     var data = {};
 
-    data["email"] = $("#login-email").val();
-    data["pass"] = $("#login-pass").val();
-    var data1 = JSON.stringify(data);
+    var email = $("#login-email").val();
+    var pass = $("#login-pass").val();
+    email = encodeURIComponent(email);
+    pass = encodeURIComponent(pass);
     $.ajax(
         {
-            url: base+"data/user_login/",
-            data: {abcd:data1},
+            url: base+"data/user_login/"+email+"/"+pass,
+
             type: "POST",
             success: function(data, status)
             {
                 if(data === "success"){
-                    redirect("")
+                   alert("success");
                 }
             },
             error: function(xhr, desc, err)
