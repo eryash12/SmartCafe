@@ -84,7 +84,7 @@ class Data extends CI_Controller{
     }
     function sign_up_user(){
         $this->output->set_header('HTTP/1.0 200 OK');
-        $data = $this->input->post('abcd');
+        $data = $_POST['abcd'];
         echo "<pre>";
         print_r($data);
         echo "</pre>";
