@@ -60,8 +60,9 @@ class Data extends CI_Controller{
         $this->load->model('user_model');
         $this->user_model->set_current_value($topic,$value);
         if($topic == "system" && $value == "1"){
-            $time = $this->input->post('abcd');
-            $time = json_decode($time);
+            $data = $this->input->post('abcd');
+            $data = json_decode($data);
+            $time = $data->start;
             $this->user_model->set_current_value('start',"'".$time."'");
             echo $time;
         }

@@ -201,11 +201,12 @@ $(document).ready(function() {
            startTimeStamp =  Math.floor(Date.now() / 1000);
         }
         var data = {};
-        var start = JSON.stringify(startTimeStamp);
+        data['start'] = startTimeStamp;
+        data = JSON.stringify(data);
         $.ajax(
             {
                 url: base + "data/set_current_value/system/"+flag,
-                data: {abcd:start},
+                data: {abcd:data},
                 type: "POST",
 
                 success: function (data, status) {
